@@ -52,9 +52,11 @@ public class Main {
         int first = num / 10;
         String twoNum = "";
         switch (first) {
+            case 0:
+                singleDigit(num);
+                break;
             case 2:
                 twoNum = (last == 0) ? "twenty" : ("twenty " + singleDigit(last));
-                ;
                 break;
             case 3:
                 twoNum = "thirty " + singleDigit(last);
@@ -73,7 +75,11 @@ public class Main {
         int first = num / 100;
         int remain = num % 100;
         String threeNum = "";
-        threeNum = (remain == 0) ? (singleDigit(first) + " hundred") : (singleDigit(first) + " hundred " + twoDigit(remain));
+//        threeNum = (remain == 0) ? (singleDigit(first) + " hundred") : (singleDigit(first) + " hundred " + twoDigit(remain));
+        if(remain == 0) threeNum = singleDigit(first) + " hundred";
+        else {if(remain <= 13) threeNum =singleDigit(first) + " hundred and " + singleDigit(remain);
+            else threeNum = singleDigit(first) + " hundred and " + twoDigit(remain);
+        }
         return threeNum;
     }
 
